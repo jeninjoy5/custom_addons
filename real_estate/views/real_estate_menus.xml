@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_parent" name="Real Estate"/>
+    <menuitem id="menu_submenu" name="Properties" parent="menu_parent"/>
+    <menuitem id="menu_submenu_menu" name="New" parent="menu_submenu" action="action_menu"/>
+
+    <field name="name"/>
+    <field name="description"/>
+    <field name="date_availability"/>
+</odoo>

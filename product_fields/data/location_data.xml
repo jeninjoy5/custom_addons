@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    <record id="location_name_data" model="stock.location">
+        <field name="name">Heavy Rack</field>
+    </record>
+    </data>
+
+</odoo>
