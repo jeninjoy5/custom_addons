@@ -1,7 +1,5 @@
-from typing import Self
 
 from odoo import models, api
-from odoo.orm.types import ValuesType
 
 
 class StockPicking(models.Model):
@@ -44,27 +42,7 @@ class StockPicking(models.Model):
 
 
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        print("working...")
-        pickings=super().create(vals_list)
-        # lines = self.move_ids.filtered(lambda move:
-        #                                move.product_id.weight > 20)
-        # print(lines)
-        # if lines:
-        for pick in self:
-            if pick.product_id.weight > 20:
-                print("if working...")
-                location = self.env.ref(
-                    'destination_location_management.location_type_name_data')
-                print(location)
-                print(self.location_dest_id.name)
-                self.write({'location_dest_id': location})
-                print(self.location_dest_id.name)
-            else:
-                location = self.env.ref('stock.stock_location_stock')
-                self.write({'location_dest_id': location})
-        return pickings
+    #
 
 
 
