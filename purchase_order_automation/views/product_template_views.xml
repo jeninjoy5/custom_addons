@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<odoo>
+
+    <record id="product_template_only_form_view" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.product</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet[@name='product_form']" position="before">
+                <header>
+                <button string="Purchase"
+                        type="object"
+                        class="oe_highlight"
+                        name="action_open_purchase_wizard"/>
+                </header>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
