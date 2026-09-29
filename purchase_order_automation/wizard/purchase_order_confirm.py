@@ -12,12 +12,24 @@ class PurchaseOrderConfirm(models.TransientModel):
 
 
     def action_confirm_purchase_order(self):
-        print(self.product_id.seller_ids.partner_id)
-        # partner=self.env['product.supplierinfo'].search([(self.product_id.seller_ids.partner_id.id)],limit=1)
-        # print(partner)
-        order=self.env['purchase.order'].create({'partner_id': self.product_id.seller_ids.partner_id.id,
-            'order_line': [(fields.Command.create({
+        vendor=self.product_id.seller_ids.partner_id[0]
+        draft_purchase_order=self.env['purchase.order'].search([
+            ('state','in','draft'),('partner_id','=',vendor.id)],limit=1)
+        print(draft_purchase_order)
+        if draft_purchase_order:
+            draft_purchase_order.write({'order_line': [(fields.Command.create({
                     'product_id':self.product_id.id,
                     'product_qty': self.quantity,
                     'price_unit': self.price}))]})
-        order.button_confirm()
+            draft_purchase_order.button_confirm()
+        else:
+            purchase_order=self.env['purchase.order'].create({
+                'partner_id': vendor.id,
+                'order_line': [(fields.Command.create({
+                        'product_id':self.product_id.id,
+                        'product_qty': self.quantity,
+                        'price_unit': self.price}))]})
+            print(purchase_order)
+            purchase_order.button_confirm()
+
+
