@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="activity_creation_action" model="ir.cron">
+        <field name="name">Activity Creation</field>
+        <field name="model_id" ref="model_purchase_order"/>
+        <field name="state">code</field>
+        <field name="code">model.action_create_activity()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+
+
+</odoo>
