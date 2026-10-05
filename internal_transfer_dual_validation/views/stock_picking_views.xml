@@ -8,15 +8,19 @@
             <field name="inherit_id" ref="stock.view_picking_form" />
             <field name="priority" eval="3"/>
             <field name="arch" type="xml">
-                <xpath expr="//header/field[@name='state']" position="inside">
-                    <field name="state"/>
+                <xpath expr="//button[@name='button_validate']"
+                       position="attributes">
+                    <attribute name="invisible">state in ['draft', 'confirmed',
+                        'done', 'cancel','to_approve']</attribute>
                 </xpath>
                 <xpath expr="//button[@name='action_cancel']" position="after">
                     <button string="Approve"
                             type="object"
-                            />
+                            class="oe_highlight"
+                            name="action_approve_transfer"
+                            groups='stock.group_stock_manager'
+                            invisible="state != 'to_approve'"/>
                 </xpath>
-
             </field>
     </record>
 
