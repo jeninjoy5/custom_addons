@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <template id="form_machine_transfer_report">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="text-center">
+                        <h1><b>Machine Transfer Report</b></h1>
+                    </div>
+                    <br></br>
+                    <t t-if="len(customer)==1"><h4><b>Customer :</b>
+                        <t t-esc='customer[0]'/></h4>
+                    </t>
+                    <br></br>
+                    <t t-if="len(machine)==1"><h4><b>Machine :</b>
+                        <t t-esc='machine[0]'/></h4>
+                    </t>
+                    <br></br>
+                </div>
+
+                <br></br>
+                <div class="page">
+                    <t t-if="transfer_install">
+                            <h4>
+                                <b>Transfer Type : Install</b>
+                            </h4>
+                            <style>
+                                td{
+                                text-align:center;
+                                font-size:20px;
+                                }
+                                th{
+                                font-size:20px;
+                                }
+                            </style>
+                            <table style="width:60%">
+                                <t t-if="len(machine)!=1">
+                                    <th>
+                                        <b>Machine</b>
+                                    </th>
+                                </t>
+                                <t t-if="len(customer)!=1">
+                                    <th>
+                                        <b>Customer</b>
+                                    </th>
+                                </t>
+                                <th>
+                                    <b>Transfer Type</b>
+                                </th>
+                                <th>
+                                    <b>Transfer Date</b>
+                                </th>
+
+                                <tbody>
+                                    <t t-foreach="docs" t-as="o">
+                                        <t t-if="o.get('transfer_type')=='install'">
+                                            <tr>
+                                                <t t-if="len(machine)!=1">
+                                                    <td>
+                                                        <t t-esc="o.get('machine')"/>
+                                                    </td>
+                                                </t>
+                                                <t t-if="len(customer)!=1">
+                                                    <td>
+                                                        <t t-esc="o.get('customer')"/>
+                                                    </td>
+                                                </t>
+                                                <td>
+                                                    <t t-esc="o.get('transfer_type')"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="o.get('transfer_date')"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                </tbody>
+                            </table>
+
+                        </t>
+                    </div>
+                <br></br>
+                <br></br>
+
+                <div class="page">
+
+                    <t t-if="transfer_remove">
+                            <h4>
+                                <b>Transfer Type : Remove</b>
+                            </h4>
+
+                        <table style="width:60%">
+
+                            <t t-if="len(machine)!=1">
+                                <th>
+                                    <b>Machine</b>
+                                </th>
+                            </t>
+                            <t t-if="len(customer)!=1">
+                                <th>
+                                    <b>Customer</b>
+                                </th>
+                            </t>
+                            <th>
+                                <b>Transfer Type</b>
+                            </th>
+                            <th>
+                                <b>Transfer Date</b>
+                            </th>
+
+                            <tbody>
+                                <t t-foreach="docs" t-as="o">
+                                    <t t-if="o.get('transfer_type')=='remove'">
+                                        <tr>
+                                            <t t-if="len(machine)!=1">
+                                                <td>
+                                                    <t t-esc="o.get('machine')"/>
+                                                </td>
+                                            </t>
+                                            <t t-if="len(customer)!=1">
+                                                <td>
+                                                    <t t-esc="o.get('customer')"/>
+                                                </td>
+                                            </t>
+                                            <td>
+                                                <t t-esc="o.get('transfer_type')"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="o.get('transfer_date')"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

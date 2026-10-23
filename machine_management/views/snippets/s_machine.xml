@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="s_machine" name="Machine">
+        <section class="machine_section">
+            <div class="container">
+                <div class="alert alert-info">
+                    <h4>Your Category Highlight Tab snippet will be displayed here...
+                        Please save to view the snippet
+                    </h4>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="machine_snippet" inherit_id="website.snippets"
+              name="Machine Snippet">
+        <xpath expr="//snippets[@id='snippet_groups']" position="inside">
+            <t t-snippet="machine_management.s_machine"/>
+        </xpath>
+    </template>
+
+
+</odoo>

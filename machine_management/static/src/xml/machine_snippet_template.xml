@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <templates xml:space="preserve">
+        <t t-name="machine_management.machine_data">
+        <section class="machine_section">
+            <div class="container">
+                <h3 class="section_heading">Machines</h3>
+                <div class="categories_wrapper">
+                        <t t-foreach="result.machines" t-as="machine"
+                           t-key="machine.id">
+                            <div class="machines">
+                                <div class="img_wrapper">
+                                    <t t-if="machine.image">
+                                        <img t-att-src="'/web/image/machine.management/%s/image'%machine.id"
+                             style="height:300px; width:300px; object-fit:contain;"
+                             alt="Product Image"/>
+                                    </t>
+                                    <t t-else="">
+                                        <img src="/theme_og_store/static/src/img/default_category.svg"
+                                             class="img img-fluid rotate-center"
+                                             alt="Default Category Image"
+                                             loading="lazy"/>
+                                    </t>
+                                </div>
+                                <div class="type">
+                                    <t t-esc="machine.machine_name"/>
+                                </div>
+                            </div>
+                        </t>
+                </div>
+            </div>
+        </section>
+        </t>
+    </templates>
+

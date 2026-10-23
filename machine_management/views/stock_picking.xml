@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="stock_picking_total_price" model="ir.ui.view">
+            <field name="name">stock.picking.total.price</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form" />
+            <field name="priority" eval="3"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="total_price"/>
+                </xpath>
+                <xpath expr="//button[@name='action_cancel']" position="after">
+                    <button string="Check"
+                            type="object"
+                            name="action_check_total_price"/>
+                </xpath>
+
+            </field>
+    </record>
+
+</odoo>

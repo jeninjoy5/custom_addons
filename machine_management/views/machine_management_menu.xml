@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <menuitem id="menu_machine_root"
+              name="Machine Management">
+
+        <menuitem id="machine_menu"
+                name="Machine">
+
+            <menuitem id="menu_machine_action"
+                      action="action_machine"/>
+
+            <menuitem id="machine_transfer_menu"
+                      name="Machine Transfers"
+                      action="action_machine_transfer"/>
+
+            <menuitem id="machine_service_menu"
+                      name="Machine Services"
+                      action="action_machine_service"/>
+        </menuitem>
+
+        <menuitem id="customer_menu"
+                  name="Customers">
+
+            <menuitem id="menu_customer_action"
+                      action="action_customer_view"/>
+        </menuitem>
+
+        <menuitem id="report_menu"
+                  name="Report">
+
+            <menuitem id="menu_report_action"
+                      name="Transfer Report"
+                      action="action_transfer_report"/>
+        </menuitem>
+
+    </menuitem>
+
+</odoo>
+
+
+
+
