@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="action_employee" model="ir.actions.act_window">
+        <field name="name">Employees</field>
+        <field name="res_model">employee.loan</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+        <record id="employee_loan_view_tree" model="ir.ui.view">
+        <field name="name">employee.loan.list</field>
+        <field name="model">employee.loan</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"
+                       string="Number"/>
+                <field name="employee_id"/>
+                <field name="loan_amount"/>
+                <field name="installment_count"/>
+                <field name="total_payable"/>
+            </list>
+        </field>
+    </record>
+
+      <record id="employee_loan_view_form" model="ir.ui.view">
+        <field name="name">employee.loan.form</field>
+        <field name="model">employee.loan</field>
+        <field name="arch" type="xml">
+            <form string="Employee Loan" class="employee_loan_details">
+                <header>
+                    <button string="Approve"
+                            type="object"
+                            class="oe_highlight"
+                            name="action_employee_loan_form_view"
+                            invisible="state!='draft'"/>
+                    <button string="Generate Installments"
+                            type="object"
+                            class="oe_highlight"
+                            name="action_installment_form_view"
+                            invisible="state!='approved'"/>
+                    <button string="Pay"
+                            type="object"
+                            class="oe_highlight"
+                            name="action_pay_form_view"
+                            invisible="state!='ongoing'"/>
+                <field name="state" widget="statusbar"
+                           statusbar_visible="draft,approved,ongoing,paid"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <div name="button_box">
+                    <button class="oe_stat_button"
+                                type="object"
+                                icon="fa-bars"
+                                name="action_installment">
+                        <field name="count_smart_button"
+                           widget="statinfo"
+                           string="Installments"/>
+                        </button>
+                    </div>
+                    <group name="employee_header">
+                        <group name="details_of_employee">
+                    <field name="employee_id" readonly="state=='approved'"/>
+                    <field name="loan_amount" readonly="state=='approved'"/>
+                    <field name="installment_count" readonly="state=='approved'"/>
+                        </group>
+                    <group name="second_group">
+                    <field name="start_date"/>
+                            <field name="installment_amount" readonly="state=='approved'"/>
+                    <field name="total_payable"/>
+                        <field name="paid_amount"/>
+                        <field name="balance_amount"/>
+
+                    </group>
+                        <notebook>
+                            <page string="Order Lines" name="order_lines">
+                                <field name="loan_line_ids" readonly="1">
+                                    <list string="Employee Order Lines"
+                                          editable="bottom">
+                                        <field name="loan_id"/>
+                                        <field name="date"/>
+                                        <field name="amount"/>
+                                        <field name="is_paid"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+
+                </sheet>
+                <chatter/>
+
+            </form>
+        </field>
+    </record>
+</odoo>
